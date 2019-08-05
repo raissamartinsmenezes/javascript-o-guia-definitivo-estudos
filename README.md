@@ -103,3 +103,21 @@ a.reverse(); // outro método, o reverse() inverte a ordem dos elementos
 
 ```
 
+Também podemos definir nossos próprios **métodos**. A palavra-chave **this** se refere ao objeto
+
+no qual o método é definido: nesse caso, o array de pontos exemplificado acima, observe:
+
+```js
+
+points.dist = function() { // define um método para calcular a distância entre pontos
+    var p1 = this[0]; // primeiro elemento do array que chamamos 
+    var p2 = this[1]; // segundo elemento do objeto 'this'
+    var a = p2.x - p1.x; // diferença em coordenadas X
+    var b = p2.y - p1.y; // diferença em coordenadas Y
+    return Math.sqrt(a * a + b * b); // o teorema de pitágoras (a * a + b * b = c * c)
+}; // Math.sqrt() calcula a raiz quadrada 
+points.dist() // => 1.414: distância entre nossos 2 pontos  
+
+```
+
+
