@@ -103,9 +103,7 @@ a.reverse(); // outro método, o reverse() inverte a ordem dos elementos
 
 ```
 
-Também podemos definir nossos próprios **métodos**. A palavra-chave **this** se refere ao objeto
-
-no qual o método é definido: nesse caso, o array de pontos exemplificado acima, observe:
+Também podemos definir nossos próprios **métodos**. A palavra-chave **this** se refere ao objeto no qual o método é definido: nesse caso, o array de pontos exemplificado acima, observe:
 
 ```js
 
@@ -120,4 +118,67 @@ points.dist() // => 1.414: distância entre nossos 2 pontos
 
 ```
 
+As instruções javascript também podem incluir **condicionais** e **laços**:
 
+```js
+
+function abs(x) { // uma função para calcular o valor absoluto
+    if(x >= 0) { // a instrução if executa esse bloco de código se a instrução for verdadeira
+        return x; 
+    } else { // a cláusula opcional else executa este bloco se a comparação do if anterior for falsa
+        return -x;
+    }
+}
+
+function factorial(n) { // uma função para calcular fatoriais 
+    var product = 1; // começa com o produto de valor 1
+    while(n > 1) { // repete as instruções que estão dentro das {}, enquanto a expressão em () for verdadeira
+        product *= n; // product = product * n
+        n--; // n = n - 1
+    } // fim do laço 
+    return product; // retorna o produto 
+}
+factorial(4) // => 24: 1 * 4 * 3 * 2
+
+function factorial2(n) { // outra versão, usando um laço diferente
+    var i, product = 1; // começa com o produto de valor 1
+    for(i = 2; i <= n; i++){ // incrementa o i automaticamente, de 2 até n
+        console.log(n)
+        product *= i; // faz este calculo a cada vez
+        console.log(product) 
+    } return product; // retorna o fatorial 
+}
+factorial2(5) // => 120: 1 * 2 * 3 * 4 * 5
+
+```
+
+Uma breve demonstração de como definir uma **classe** javascript, neste caso ela irá representar pontos geométricos
+bidimensionais. Os objetos que são instâncias dessa classe têm um único método chamado **r()** que calcula a distância
+do ponto a partir da origem:
+
+```js
+
+// defini uma função construtora pra inicializar um novo objeto Point
+function Point(x, y) { // por convenção, as construtoras começam com letras maiúsculas 
+    this.x = x; // a palavra-chave this é o novo objeto que está sendo inicializado 
+    this.y = y; // this armazena os argumentos da função como propriedades do objeto 
+} // nenhum return é necessário 
+
+// usa uma função construtora com a palavra 'new' para criar instâncias 
+var p = new Point(1, 1) // o ponto geométrico é (1, 1)
+
+// define métodos para objetos Point atribuindo-os ao objeto prototype associado à função construtora
+Point.prototype.r = function() {
+    return Math.sqrt( 
+        this.x * this.x + this.y * this.y // este é o objeto point no qual o método é chamado 
+    );
+};
+
+// Agora o objeto Point b (e todos os futuros objetos Point) herda o método r()
+p.r() // => 1.414
+
+```
+
+## 1.2 Javascript do lado do cliente 
+
+### 1.2.1 Exemplo: uma calculadora de empréstimos em Javascript 
